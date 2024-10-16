@@ -1,7 +1,34 @@
-import './App.css'
-import './corner.css'
+import "./App.css";
+import "./corner.css";
+import { TaskItem } from "./components/TaskItem";
+import { useState } from "react";
 
 function App() {
+  const tasksArray = [
+    {
+      id: 1,
+      task: "Aprender React",
+      done: false,
+    },
+    {
+      id: 2,
+      task: "Finalizar este proyecto",
+      done: false,
+    },
+    {
+      id: 3,
+      task: "Conseguir otro trabajo",
+      done: false,
+    },
+  ];
+
+  const [tasks, setTasks] = useState(tasksArray);
+
+  const deleteTask = (index) => {
+    const filterTasks = tasks.filter(t => t.id !== index)
+    setTasks(filterTasks)
+  }
+
   return (
     <>
       <div id="header">
@@ -56,16 +83,22 @@ function App() {
         </p>
       </div>
 
-      {/* <div id="myUnOrdList">
+      <div id="myUnOrdList">
         <ul className="todo-list">
-          <div className="todo">
-            items added to this list:
-            <li></li>
-            <button>delete</button>
-            <button>check</button>
-          </div>
+          {tasks.map((val) => {
+            return (
+              <div className="todo" key={val.id} >
+                <TaskItem
+                index={val.id}
+                deleteTask={deleteTask}
+                >
+                  {val.task}
+                </TaskItem>
+              </div>
+            );
+          })}
         </ul>
-      </div> */}
+      </div>
     </>
   );
 }
