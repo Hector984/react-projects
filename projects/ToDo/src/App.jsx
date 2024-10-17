@@ -29,6 +29,14 @@ function App() {
     setTasks(filterTasks)
   }
 
+  const checkTask = (index) => {
+    let newTasks = [...tasks]
+    const findTask = newTasks.find(t => t.id === index)
+    findTask.done = !findTask.done
+
+    setTasks(newTasks)
+  }
+
   return (
     <>
       <div id="header">
@@ -91,6 +99,8 @@ function App() {
                 <TaskItem
                 index={val.id}
                 deleteTask={deleteTask}
+                checkTask={checkTask}
+                isCheck={val.done}
                 >
                   {val.task}
                 </TaskItem>

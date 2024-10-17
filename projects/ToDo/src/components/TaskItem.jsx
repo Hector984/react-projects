@@ -1,12 +1,20 @@
-export const TaskItem = ({ children, deleteTask, index }) => {
+import { CheckTaskIcon } from "./CheckTaskIcon";
+
+export const TaskItem = ({ children, deleteTask, checkTask, index, isCheck }) => {
 
     const handleClick = () => {
         deleteTask(index)
     }
 
+    const handleCheckTask = () => {
+      checkTask(index)
+    }
+
+    const finishedTask = isCheck ? "completed" : "";
+
   return (
     <>
-      <li>{children}</li>
+      <li className={finishedTask}>{children}</li>
       <button onClick={handleClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,21 +31,8 @@ export const TaskItem = ({ children, deleteTask, index }) => {
           />
         </svg>
       </button>
-      <button>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m4.5 12.75 6 6 9-13.5"
-          />
-        </svg>
+      <button onClick={handleCheckTask}>
+        <CheckTaskIcon isCheck={isCheck}/>
       </button>
     </>
   );
