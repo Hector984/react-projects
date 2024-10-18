@@ -23,6 +23,7 @@ function App() {
   ];
 
   const [tasks, setTasks] = useState(tasksArray);
+  const [task, setTask] = useState("");
 
   const deleteTask = (index) => {
     const filterTasks = tasks.filter(t => t.id !== index)
@@ -30,10 +31,30 @@ function App() {
   }
 
   const checkTask = (index) => {
-    let newTasks = [...tasks]
+    const newTasks = [...tasks]
     const findTask = newTasks.find(t => t.id === index)
     findTask.done = !findTask.done
 
+    setTasks(newTasks)
+  }
+
+  const captureTask = (event) => {
+    const newTask = event.target.value
+    setTask(newTask)
+  }
+
+  const addTask = (event) => {
+    event.preventDefault()
+    const taskId = tasks.length + 1
+
+    const newTask = {
+      id: taskId,
+      task: task,
+      done: false
+    }
+
+    const newTasks = [...tasks, newTask]
+    setTask("")
     setTasks(newTasks)
   }
 
@@ -51,8 +72,11 @@ function App() {
       </div>
 
       <div id="form">
-        <form>
-          <input className="todo-input" type="text" placeholder="Add a task." />
+        <form onSubmit={addTask}>
+          <input className="todo-input" type="text" 
+          placeholder="Add a task." onChange={captureTask}
+          value={task}
+          />
           <button className="todo-btn" type="submit">
             I Got This!
           </button>
