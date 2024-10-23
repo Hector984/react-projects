@@ -277,7 +277,7 @@ form button {
   overflow-wrap: anywhere;
 }
 
-.check-btn, .delete-btn {
+.check-btn, .delete-btn, .edit-btn {
   font-size: 19px;
   cursor: pointer;
   width: 2em;
