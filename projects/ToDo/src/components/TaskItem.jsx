@@ -1,20 +1,19 @@
 import { CheckTaskIcon } from "./CheckTaskIcon";
 import { EditMark } from "./icons/EditMark";
 import { DeleteMark } from "./icons/DeleteMark";
-import {Modal} from "./Modal"
-import { useState } from "react";
+import { useContext } from "react";
+import TaskContext from "../context/TaskContext";
 
 export const TaskItem = ({
   children,
-  deleteTask,
-  checkTask,
   editTask,
   index,
   isCheck
 }) => {
   const finishedTask = isCheck ? "completed" : "";
+  const {deleteTask, checkTask} = useContext(TaskContext)
 
-  const handleClick = () => {
+  const handleDelete = () => {
     deleteTask(index);
   };
 
@@ -38,7 +37,7 @@ export const TaskItem = ({
         <EditMark />
       </button>
 
-      <button onClick={handleClick} className="delete-btn">
+      <button onClick={handleDelete} className="delete-btn">
         <DeleteMark />
       </button>
     </>

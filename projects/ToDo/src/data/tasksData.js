@@ -1,4 +1,4 @@
-export const tasksArray = [
+const tasksArray = [
   {
     id: 1,
     task: "Aprender React",
@@ -18,3 +18,5 @@ export const tasksArray = [
     done: false,
   },
 ];
+
+export default tasksArray
