@@ -6,29 +6,27 @@ import TaskContext from "../context/TaskContext";
 
 export const TaskItem = ({
   children,
-  editTask,
-  index,
-  isCheck
+  task
 }) => {
-  const finishedTask = isCheck ? "completed" : "";
-  const {deleteTask, checkTask} = useContext(TaskContext)
+  const finishedTask = task.done ? "completed" : "";
+  const {deleteTask, checkTask, editTask} = useContext(TaskContext)
 
   const handleDelete = () => {
-    deleteTask(index);
+    deleteTask(task.id);
   };
 
   const handleCheckTask = () => {
-    checkTask(index);
+    checkTask(task.id);
   };
 
   const handleEditTask = () => {
-    editTask(index)
+    editTask(task.id)
   }
 
   return (
     <>
       <button onClick={handleCheckTask} className="check-btn">
-        <CheckTaskIcon isCheck={isCheck} />
+        <CheckTaskIcon isCheck={task.done} />
       </button>
 
       <li className={finishedTask}>{children}</li>

@@ -33,7 +33,7 @@
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    width: 300px;
+    width: fit-content;
     text-align: center;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
   }
@@ -53,22 +53,33 @@
   }
   
   /* Estilos del input */
-  .modal-input {
+  
+  .modal-div {
+    display: flex;
+    font-size: 1.7rem;
+    justify-content: center;
+    margin: 15px 0;
+    padding: 0.8rem;
     width: 100%;
+    margin-top: 30px;
+  }
+  
+  .modal-div input {
+    padding: 6px;
+    font-size: 16px;
+    outline: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    max-width: 500px;
+    transition: #AEB1B4 200ms ease-in-out;
+    width: 100%;
+  }
+  
+  .modal-div button {
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    font-size: 17px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    min-width: 100px;
+    background-color: #AEB1B4;
   }
-  
-  /* Estilos del botón enviar */
-  .modal-btn {
-    background-color: rgb(247, 226, 223);
-  color: rgb(0, 0, 0);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
