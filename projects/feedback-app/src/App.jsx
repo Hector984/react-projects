@@ -8,11 +8,20 @@ function App() {
 
   const [feedback, setFeedback] = useState(FeedbackData)
 
+  const handleDeleteItem = (id) => {
+
+    if (window.confirm("¿Deseas eliminar el registro?")) {
+      const newFeedback = feedback.filter((f) => f.id !== id);
+      setFeedback(newFeedback);
+    }
+    
+  }
+
   return (
     <>
       <Header />
       <div className='container'>
-        <FeedbackList feedback={feedback}/>
+        <FeedbackList feedback={feedback} handleDeleteItem={handleDeleteItem}/>
       </div>
     </>
   )
