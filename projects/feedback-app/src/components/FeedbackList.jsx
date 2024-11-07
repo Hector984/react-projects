@@ -18,7 +18,8 @@ const FeedbackList = ({feedback, handleDeleteItem}) => {
 }
 
 FeedbackList.propTypes = {
-    feedback: PropTypes.array
+    feedback: PropTypes.array, 
+    handleDeleteItem: PropTypes.func
 }
 
 export default FeedbackList

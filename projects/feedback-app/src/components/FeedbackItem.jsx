@@ -1,5 +1,6 @@
 import Card from "./shared/Card"
 import {FaTimes} from 'react-icons/fa'
+import PropTypes from "prop-types"
 
 const FeedbackItem = ({item, handleDeleteItem}) => {
 
@@ -16,6 +17,11 @@ const FeedbackItem = ({item, handleDeleteItem}) => {
             <div className="text-display">{item.text}</div>
         </Card>
     )
+}
+
+FeedbackItem.propTypes = {
+    item: PropTypes.object,
+    handleDeleteItem: PropTypes.func
 }
 
 export default FeedbackItem
