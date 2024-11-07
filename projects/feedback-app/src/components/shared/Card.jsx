@@ -6,7 +6,6 @@ const Card = ({children, reverse}) => {
 
 Card.propTypes = {
     reverse: PropTypes.bool,
-    children: PropTypes.element
 }
 
 export default Card
