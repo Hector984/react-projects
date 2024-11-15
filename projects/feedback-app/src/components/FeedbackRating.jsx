@@ -2,13 +2,11 @@ import { useState } from "react"
 
 const FeedbackRating = ({select}) => {
     
-    const [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState(null)
 
     const handleChange = (e) => {
         setSelected(+e.target.value)
-        console.log()
-        setSelected(+e.target.value)
-        select(selected)
+        select(+e.target.value)
     }
     
     return (

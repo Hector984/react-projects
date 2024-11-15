@@ -19,11 +19,19 @@ function App() {
     
   }
 
+  const addFeddback = (feedbackForm) => {
+    const newFeedback = feedback
+    feedbackForm.id = newFeedback.length + 1
+    newFeedback.push(feedbackForm)
+    console.log(newFeedback)
+    setFeedback(newFeedback)
+  }
+
   return (
     <>
       <Header />
       <div className='container'>
-        <FeedbackForm />
+        <FeedbackForm addFeddback={addFeddback}/>
         <FeedbackStats feedback={feedback} />
         <FeedbackList feedback={feedback} handleDeleteItem={handleDeleteItem}/>
       </div>
