@@ -3,7 +3,7 @@ import Button from './shared/Button'
 import FeedbackRating from "./FeedbackRating"
 import { useState } from "react"
 
-const FeedbackForm = ({addFeddback}) => {
+const FeedbackForm = ({handleAddFeddback}) => {
 
     const [text, setText] = useState('')
     const [btnDisabled, setbtnDisabled] = useState(true)
@@ -27,18 +27,17 @@ const FeedbackForm = ({addFeddback}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        addFeddback({
-            id: 0,
+        handleAddFeddback({
             rating,
             text
         })
         setText('')
-        setRating(1)
+        handleRating(1)
     }
 
     return (
         <Card reverse={false}>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h2>How would you rate our service with us?</h2>
                 <FeedbackRating select={handleRating}/>
                 <div className="input-group">
@@ -49,7 +48,6 @@ const FeedbackForm = ({addFeddback}) => {
                     <Button type="submit" 
                     isDisabled={btnDisabled} 
                     version="primary"
-                    onSubmit={handleSubmit}
                     >Send</Button>
                 </div>
             </form>
