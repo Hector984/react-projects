@@ -1,14 +1,22 @@
 import Card from "./shared/Card"
 import Button from './shared/Button'
 import FeedbackRating from "./FeedbackRating"
-import { useState } from "react"
+import { useState, useContext, useEffect } from "react"
+import FeedbackContext from "../context/FeedbackContext"
 
-const FeedbackForm = ({handleAddFeddback}) => {
+const FeedbackForm = () => {
 
+    const {addFeddback, feedbackEdit} = useContext(FeedbackContext)
     const [text, setText] = useState('')
     const [btnDisabled, setbtnDisabled] = useState(true)
     const [validationMessage, setValidationMessage] = useState('')
     const [rating, setRating] = useState(1)
+
+    useEffect(() => {
+        setText(feedbackEdit.item.text)
+        setRating(feedbackEdit.item.rating)
+        setbtnDisabled(false)
+    }, [feedbackEdit])
 
     const handleTextChange = (e) => {
         const feedback = e.target.value
@@ -27,7 +35,7 @@ const FeedbackForm = ({handleAddFeddback}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        handleAddFeddback({
+        addFeddback({
             rating,
             text
         })
