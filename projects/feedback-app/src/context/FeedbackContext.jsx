@@ -29,6 +29,16 @@ export const FeedbackProvider = ({ children }) => {
     })
   }
 
+  const updateFeedback = (id, updFeddback) => {
+   
+    const updatedFeedback = [...feedback]
+    const findFeedback = updatedFeedback.find(x => x.id === id)
+    
+    findFeedback.rating = updFeddback.rating
+    findFeedback.text = updFeddback.text
+    setFeedback(updatedFeedback)
+  }
+
   return (
     <FeedbackContext.Provider
       value={{
@@ -36,7 +46,8 @@ export const FeedbackProvider = ({ children }) => {
         addFeddback,
         editFeedback,
         feedbackEdit,
-        deleteItem
+        deleteItem,
+        updateFeedback
       }}
     >
       {children}

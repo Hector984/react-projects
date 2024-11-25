@@ -1,11 +1,15 @@
-import { useState } from "react"
 
-const FeedbackRating = ({select}) => {
+const FeedbackRating = ({ select, selected }) => {
     
-    const [selected, setSelected] = useState(null)
+    // const {feedbackEdit} = useContext(FeedbackContext)
+    // const [selected, setSelected] = useState(null)
+
+    // useEffect(() => {
+    //     setSelected(feedbackEdit.item.rating)
+    // }, [feedbackEdit])
 
     const handleChange = (e) => {
-        setSelected(+e.target.value)
+        // setSelected(+e.target.value)
         select(+e.target.value)
     }
     
@@ -19,6 +23,7 @@ const FeedbackRating = ({select}) => {
               name='rating'
               value={i + 1}
               onChange={handleChange}
+              checked={selected === i + 1}
             />
             <label htmlFor={`num${i + 1}`}>{i + 1}</label>
           </li>
