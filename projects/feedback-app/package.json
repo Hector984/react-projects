@@ -3,13 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch db.json --port 5000",
+    "serve": "concurrently \"npm run server\" \"npm run dev\""
   },
   "dependencies": {
+    "concurrently": "^9.1.0",
+    "json-server": "^1.0.0-beta.3",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
