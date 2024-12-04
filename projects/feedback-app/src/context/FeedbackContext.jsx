@@ -70,17 +70,25 @@ export const FeedbackProvider = ({ children }) => {
 
   const updateFeedback = async (id, updFeddback) => {
    
-    const updatedFeedback = [...feedback]
+    // const updatedFeedback = [...feedback]
     const response = await fetch(`${baseURL}/feedback/${id}`, {
       method: 'PUT', 
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(updFeddback)
     })
-    const findFeedback = updatedFeedback.find(x => x.id === id)
+
+    console.log()
     
-    findFeedback.rating = updFeddback.rating
-    findFeedback.text = updFeddback.text
-    setFeedback(updatedFeedback)
+    if(response.status === 200) {
+      await fetchFeedback()
+    } else {
+      alert('Something went wrong')
+    }
+    // const findFeedback = updatedFeedback.find(x => x.id === id)
+    
+    // findFeedback.rating = updFeddback.rating
+    // findFeedback.text = updFeddback.text
+    // setFeedback(updatedFeedback)
   }
 
   return (
