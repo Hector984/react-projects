@@ -12,8 +12,7 @@ const UserResults = () => {
             `https://api.github.com/users`, {
                 headers: {
                     Authorization: 
-                    `token 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
-                    `
+                    ` `
                 }
             })
         
