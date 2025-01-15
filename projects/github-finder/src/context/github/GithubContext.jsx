@@ -20,9 +20,11 @@ export const GithubProvider = ({ children }) => {
 
     setUsers(data);
     setLoading(false);
+
+    console.log(users)
   }
 
-  return <GithubContext.Provider value={{ users, loading, fetchUsers }}>
+  return <GithubContext.Provider value={ {users, loading, fetchUsers }}>
     {children}
   </GithubContext.Provider>
 };
