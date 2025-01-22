@@ -49,13 +49,17 @@ export const GithubProvider = ({ children }) => {
 
     const {items} = await results.json();
 
-    console.log(state.users);
-
     dispatch({
       type: "SEARCH_USERS",
       payload: items,
     });
 
+  }
+
+  const clearUsers = () => {
+    dispatch({
+      type: "CLEAR_USERS"
+    })
   }
 
   const setLoading = () => {
@@ -65,7 +69,7 @@ export const GithubProvider = ({ children }) => {
   }
 
   return <GithubContext.Provider value={ 
-    {users: state.users, loading: state.loading, fetchUsers, searchUsers}}>
+    {users: state.users, loading: state.loading, fetchUsers, searchUsers, clearUsers}}>
     {children}
   </GithubContext.Provider>
 };
