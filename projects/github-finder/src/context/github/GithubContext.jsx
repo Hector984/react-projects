@@ -32,12 +32,14 @@ export const GithubProvider = ({ children }) => {
       payload: data,
     });
   };
-
-
-  // const getUser = async (login) => {
   //   setLoading();
 
-  //   const results = await fetch(`${GITHUB_URL}/users/${login}`, {
+  //   const params = new URLSearchParams({
+  //     sort: 'created',
+  //     per_page: 10
+  //   });
+
+  //   const results = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
   //     headers: {
   //       Authorization: `token ${GITHUB_TOKEN}`,
   //     },
@@ -49,58 +51,18 @@ export const GithubProvider = ({ children }) => {
   //     const data = await results.json();
 
   //     dispatch({
-  //       type: "GET_USER",
+  //       type: "GET_REPOS",
   //       payload: data,
   //     });
   //   }
   // };
-
-  const getUserRepos = async (login) => {
-    setLoading();
-
-    const params = new URLSearchParams({
-      sort: 'created',
-      per_page: 10
-    });
-
-    const results = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
-
-    if (results.status === 404) {
-      window.location.href = "/notfound";
-    } else {
-      const data = await results.json();
-
-      dispatch({
-        type: "GET_REPOS",
-        payload: data,
-      });
-    }
-  };
-
-  const clearUsers = () => {
-    dispatch({
-      type: "CLEAR_USERS",
-    });
-  };
-
-  const setLoading = () => {
-    dispatch({
-      type: "SET_LOADING",
-    });
-  };
 
   return (
     <GithubContext.Provider
       value={{
         ...state,
         dispatch,
-        fetchUsers,
-        clearUsers,
-        getUserRepos,
+        fetchUsers
       }}
     >
       {children}
