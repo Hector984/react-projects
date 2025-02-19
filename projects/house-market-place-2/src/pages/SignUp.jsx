@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {db} from "../firebase.config";
+import {setDoc, doc, serverTimestamp} from "firebase/firestore";
 import { ReactComponent as ArrowRigthIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 
@@ -21,6 +24,32 @@ function SignUp() {
     }));
   };
 
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    const auth = getAuth();
+    const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredentials.user;
+
+    updateProfile(auth.currentUser, {
+      displayName: name
+    });
+
+    const formDataCopy = {...formData}
+    delete formDataCopy.password;
+    formDataCopy.timestamp = serverTimestamp();
+
+    await setDoc(doc(db, 'users', user.uid), formDataCopy);
+
+    navigate('/');
+
+    try {
+
+    }catch(error) {
+
+    }
+  }
+
   return (
     <>
       <div className="pageContainer">
@@ -28,7 +57,7 @@ function SignUp() {
           <p className="pageHeader">Welcome Back!</p>
         </header>
 
-        <form action="">
+        <form onSubmit={handleSignUp}>
           <input
             type="text"
             className="nameInput"
