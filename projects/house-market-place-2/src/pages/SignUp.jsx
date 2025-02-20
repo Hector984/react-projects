@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {toast} from 'react-toastify'
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {db} from "../firebase.config";
@@ -27,26 +28,28 @@ function SignUp() {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    const auth = getAuth();
-    const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredentials.user;
-
-    updateProfile(auth.currentUser, {
-      displayName: name
-    });
-
-    const formDataCopy = {...formData}
-    delete formDataCopy.password;
-    formDataCopy.timestamp = serverTimestamp();
-
-    await setDoc(doc(db, 'users', user.uid), formDataCopy);
-
-    navigate('/');
-
     try {
+      const auth = getAuth();
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
 
-    }catch(error) {
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
 
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy);
+
+      navigate("/");
+    } catch (error) {
+      toast.error('Something went wrong with registration')
     }
   }
 
