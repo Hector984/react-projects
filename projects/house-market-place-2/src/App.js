@@ -5,6 +5,7 @@ import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Offers from "./pages/Offers";
+import Category from "./pages/Category";
 import ForgotPassword from "./pages/ForgotPassword";
 import Explore from "./pages/Explore";
 import Navbar from "./components/Navbar";
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Explore/>} />
           <Route path='/offers' element={<Offers/>} />
+          <Route path='/category/:categoryName' element={<Category/>} />
           <Route path='/profile' element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile/>} />
           </Route>
