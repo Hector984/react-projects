@@ -14,7 +14,8 @@ export const useAuthStatus = () => {
         onAuthStateChanged(auth, (user) => {
             setLoggedIn(!!user);
             setCheckingStatus(false);
-        })
-    })
+        });
+    });
+
     return {loggedIn, checkingStatus}; 
 }
