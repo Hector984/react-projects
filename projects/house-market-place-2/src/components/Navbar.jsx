@@ -27,7 +27,7 @@ const Navbar = () => {
                     <li className="navbarListItem">
                         <OfferIcon fill={pathMatchRoute('/offers')} width='36px'heigth='36px'
                         onClick={() => navigate('/offers')}/>
-                        <p>Offer</p>
+                        <p>Offers</p>
                     </li>
 
                     <li className="navbarListItem">
